@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>UNO Game</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link href="libs/chui/chui-ios-3.9.2.css" rel="stylesheet" />
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
+
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+
+        <script src="libs/chui/chui-3.9.2.js"></script>
+
+        <script src="libs/game.js"></script>
+
+        <script>
+            $(function () {
+                
+                $('#deck-cards').on("singletap", "img", function () {
+                    $(this).addClass('top').removeClass('bottom');
+                    $(this).siblings().removeClass('top').addClass('bottom');
+                });
+
+                $("#droppable").droppable({
+                    drop: function (event, ui) {
+                        deleteMe = true;
+
+                        alert("Dropped");
+
+                        ui.draggable.remove();
+                    }
+                });
+            });
+        </script>
+
+        <style>
+            #deck-cards{
+                float: left;
+                width: 170px;
+            }
+
+            #pile-cards{
+                float: left;
+                width: 170px;
+            }
+
+            .peppable2{ 
+                position: absolute; 
+                top: 550px; 
+                left: 100px; 
+            }
+
+            .peppable3{ 
+                position: absolute; 
+                top: 550px; 
+                left: 400px; 
+            }
+            
+            .user-img{
+                display: block;
+            }
+
+            .user{
+                width: 200px;
+                height: auto;
+            }
+
+            .top {
+                z-index: 100 !important; 
+                position: relative;
+            }
+
+            .bottom {
+                z-index: 10 !important; 
+                position: relative;
+            }
+
+        </style>
+    </head>
+    <body>
+        <nav>
+            <h1>Create a UNO Game</h1>
+        </nav>
+
+        <article id="main">
+            <section>                
+                <ul class="list" id="all-students">
+                    <li>
+                        <label for="gameName">Game Name</label>
+                        <input type="text" name="gamename_main" id="gamename">
+                    </li>
+
+                    <li>
+                        <button type="submit" id="createbtn">Create Game</button>
+                    </li>
+                </ul>
+            </section>
+        </article>
+
+        <nav>
+            <h2>New Game</h2>
+        </nav>
+
+        <article id="gamelists">
+            <section>
+                <h2>New Game</h2>
+
+                <ul class="list" id="new-game">
+                    <li>
+                        <label for="gameID">Game ID</label>
+                        <span id="gameid"></span>
+                    </li>
+
+                    <li>
+                        <label for="gameName">Game Name</label>
+                        <input type="text" id="gname" name="gamename_created">
+                    </li>
+                    <li>
+                        <button type="submit" id="startbtn">Start</button>
+                    </li>
+                </ul>
+                <div id="socketconnect"> </div>  
+            </section>
+        </article>
+
+        <nav>
+            <h2>Players</h2>
+        </nav>
+
+        <article id="show-players">
+            <section>
+                <h2>Players</h2>
+
+                <ul class="list" id="playerlists">
+                    <li id="droppable" class="ui-widget-header">
+                        
+                    </li>
+                </ul>
+
+                <div id="deck-cards">
+                    <!--<img src="images/back.png" class="peppable2" />-->
+                </div><!-- end deck-cards -->
+
+                <div id="pile-cards">
+                </div><!-- end pile-cards -->
+
+            </section>
+        </article>
+    </body>
+</html>

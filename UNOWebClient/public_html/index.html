@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>UNO Game</title>
+
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+        <link rel="stylesheet" href="css/bootstrap.css" />
+        <link rel="stylesheet" href="css/style.css" />
+
+        <script src="js/jquery.js"></script>
+        
+        <script type="text/javascript">
+            $(function () {
+
+                $.ajax({
+                    type: 'GET',
+                    url: 'http://localhost:3808/UNOWebAPI/api/game/gamelist',
+                    crossDomain: true,
+                    dataType: 'text',
+                    success: function (result) {
+                        
+                        var json = $.parseJSON(result);
+
+                        for (var i = 0; i < json.length; i++)
+                        {
+                            $('#gamelists').append("<option value='" + json[i].gid + "'>" +
+                                    json[i].gname + " (" + json[i].gid + ")" + "</option>");
+                        }
+                    }
+
+                });
+
+            });
+        </script>
+    </head>
+    <body>
+        <div class="container">
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="col-md-6">
+                        <h3>Create a New UNO Game</h3>
+                        <br />
+
+                        <form action="http://localhost:3808/UNOWebAPI/api/game/creategame" method="post">
+
+                            <div class="form-group">
+                                
+                                <label for="gameName" class="col-sm-4 control-label">Game Name</label>
+                                
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="gamename" name="gamename">
+                                </div><!-- end col-sm-8 -->
+                                
+                                <div class="clear"></div><!-- end clear -->
+                                
+                            </div><!-- end form-group -->
+
+                            <button type="submit" class="btn btn-primary">Create Game</button>
+
+                        </form>
+                        
+                    </div><!-- end col-md-6 -->
+                    
+                    <div class="col-md-6">                    
+                    </div><!-- end col-md-6 -->                   
+                    
+                </div><!-- end col-md-12 -->
+                
+            </div><!-- end row -->
+        </div><!-- end container -->
+    </body>
+</html>

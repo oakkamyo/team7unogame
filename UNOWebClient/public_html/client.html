@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>UNO Game</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link href="libs/chui/chui-ios-3.9.2.css" rel="stylesheet" />
+
+        <script src="libs/jquery.js"></script>
+        <script src="libs/chui/chui-3.9.2.js"></script>
+
+        <script src="libs/client.js"></script>
+
+        <script>
+            $(function () {
+                
+                $('#player-cards').on("singletap", "img", function () {
+                    $(this).remove();
+                });
+                
+            });
+        </script>
+
+        <style>
+            .absolute0 {
+                left: 100px;
+                z-index: 1;
+            }
+
+            .absolute1 {
+                left: 150px;
+                z-index: 2;
+            }
+
+            .absolute2 {
+                left: 200px;
+                z-index: 3;
+            }
+
+            .absolute3 {
+                left: 250px;
+                z-index: 4;
+            }
+
+            .absolute4 {
+                left: 300px;
+                z-index: 5;
+            }
+
+            .absolute5 {
+                left: 350px;
+                z-index: 6;
+            }
+
+            .absolute6 {
+                left: 400px;
+                z-index: 7;
+            }
+
+            #player-cards {
+                width: 300px;
+                height: 400px;
+                float: left;
+                right: 0;
+                top: 200px;
+                overflow: hidden;
+            }
+
+            #player-cards img{
+                position: absolute;			
+                width: 170px;
+                height: 258px;
+                z-index: 0;
+                top: 200px;
+            }
+
+            .top {
+                z-index: 100 !important; 
+                position: relative;
+            }
+
+            .bottom {
+                z-index: 10 !important; 
+                position: relative;
+            }
+        </style>
+    </head>
+    <body>
+        <nav>
+            <h1>Available Games</h1>
+        </nav>
+
+        <article id="show-allgames">
+            <section>
+
+                <ul class="list" id="gamelists">
+                </ul>
+
+            </section>
+        </article>
+
+        <nav>
+            <h1>Add Player</h1>
+        </nav>
+
+        <article id="addplayer">
+            <section>
+                <ul class="list" id="pname">
+                    <li>
+                        <label>Game ID</label>
+                        <span id="gameid"></span>
+                    </li>
+                    <li>
+                        <label>Player Name</label>
+                        <input type="text" name="playername" id="playername" placeholder="Type Player Name">
+                    </li>
+                    <li>
+                        <button type="submit" id="addplayerbtn">Join Game</button> 
+                    </li>
+                </ul>
+
+            </section>
+        </article>
+
+        <nav>
+            <h1>Waiting Game</h1>
+        </nav>
+
+        <article id="waiting-game">
+            <section>
+                <ul class="list" id="pname">
+                    <li>
+                        <input type="hidden" id="gid">
+                        <input type="hidden" id="playerid">
+                    </li>
+                    <li>
+                        Waiting for <span id="gname"></span> to start
+                    </li>
+
+                    <li>
+                        <button type="submit" id="startgamebtn">Start</button>
+                    </li>
+                </ul>
+                <div id="socketconnect"> </div>  
+            </section>
+        </article>
+
+        <nav>
+            <h1>UNO Cards</h1>
+        </nav>
+
+        <article id="deal-cards">
+            <section>
+
+                <div id="player-cards">
+
+                </div>
+            </section>
+        </article>
+    </body>
+</html>

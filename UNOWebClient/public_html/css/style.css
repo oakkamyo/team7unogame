@@ -1,0 +1,16 @@
+/* --------------- Custom CSS --------------- */
+
+body{
+    background: #F7F7F9;
+}
+
+#cards img{
+    width: 90px;
+    margin-right: 15px;
+    margin-bottom: 15px;
+}
+
+.clear{
+    clear: both;
+    margin-bottom: 10px;
+}
